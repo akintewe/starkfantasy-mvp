@@ -101,7 +101,7 @@ pub mod actions {
         /// Use the default namespace "dojo_starter". This function is handy since the ByteArray
         /// can't be const.
         fn world_default(self: @ContractState) -> dojo::world::WorldStorage {
-            self.world(@"dojo_starter")
+            self.world(@"starkfantasy")
         }
     }
 }
