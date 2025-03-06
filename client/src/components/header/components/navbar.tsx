@@ -24,7 +24,7 @@ export default function NavBar({ active }: { active?: boolean }) {
         aria-label="Main navigation"
         className={`${
           active
-            ? "bg-[#232323] rounded-[60px] w-[855px] h-[79px]"
+            ? "bg-slate-900 rounded-[60px] w-[855px] h-[79px]"
             : "bg-slate-900 rounded-[40px] w-[700px] h-[70px]"
         } mx-auto flex justify-center items-center`}
       >

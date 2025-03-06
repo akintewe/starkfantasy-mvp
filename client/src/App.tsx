@@ -13,7 +13,7 @@ import {
 } from "@dojoengine/sdk/react";
 import { addAddressPadding, CairoCustomEnum } from "starknet";
 import { Events } from "./events.tsx";
-import Page from "./app/page.tsx";
+//import Page from "./app/page.tsx";
 
 /**
  * Main application component that provides game functionality and UI.
@@ -47,8 +47,7 @@ function App() {
     const position = useModel(entityId as string, ModelsMapping.Position);
 
     return (
-        <Page />
-        /*
+        //<Page />
         <div className="bg-black min-h-screen w-full p-4 sm:p-8">
             <div className="max-w-7xl mx-auto">
                 <WalletAccount />
@@ -208,10 +207,10 @@ function App() {
                 </div>
 
                 <Events />*/
-                /* // Here sdk is passed as props but this can be done via contexts */
+                // Here sdk is passed as props but this can be done via contexts
                 /*<HistoricalEvents />
             </div>
-        </div>*/
+        </div>
         
     );
 }
