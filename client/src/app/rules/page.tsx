@@ -8,7 +8,7 @@ export default function RulesContent() {
   return (
     <div className="flex justify-center bg-slate-950 text-white pb-5">
       <div className="container max-w-[1250px] pt-9 flex">
-        <div id="content" className="px-5 max-w-[1000px] flex flex-col gap-10">
+        <div id="content" className="px-2 max-w-[1000px] flex flex-col gap-10">
           <h1 className="text-left  font-semibold">
             Game <span className="text-orange-500">Rules</span>
           </h1>
@@ -86,8 +86,7 @@ export default function RulesContent() {
                   <div>
                     <span className="text-orange-600 font-bold">
                       Team Captain
-                    </span>
-                    : You can select a captain for your team, these player earns <span className="text-orange-600">double point</span> (e.g.,
+                    </span>: You can select a captain for your team, these player earns <span className="text-orange-600">double point</span> (e.g.,
                     a goal <br /> = +20 points instead of 10).
                   </div>
                 </div>
@@ -110,20 +109,17 @@ export default function RulesContent() {
             </p>
             <RulesTableBasketball />
             <div>
-              <h3 className="text-xl text-left pb-1 pt-3  lg:text-2xl">
+              <h3 className="text-left pb-2 ">
                 Additional Rules
               </h3>
               <div className="text-left">
                 <div>
-                  <span className="text-orange-600 font-semibold">
-                    Substitues
-                  </span>
-                  : Bench players{" "}
-                  <span className="text-orange-600">earn half the points</span>
-                  (e.g., a player scored 20 points = +10 points instead of 20)
+                  <span className="text-orange-600 font-bold">
+                    Substitutes
+                  </span>: Bench players <span className="text-orange-600">earn half the points</span> (e.g., a player scored 20 points = +10 points instead of 20)
                 </div>
                 <div>
-                  <span className="text-orange-600 font-semibold">
+                  <span className="text-orange-600 font-bold">
                     Team Captain
                   </span>
                   : You can select a captain for your team, these player earns{" "}
@@ -135,17 +131,14 @@ export default function RulesContent() {
           </section>
           <section>
             <div id="6">
-              <h1 className="text-left text-3xl font-semibold py-3  lg:text-4xl">
+              <h2 className="text-left py-3 ">
                 Entry Fee
-              </h1>
-              <p className=" text-left ">
-                Each official competition will have{" "}
-                <span className="text-orange-600">different entry fee</span>,
-                this is calculated based on the league performance <br />
-                The private leagues or{" "}
-                <span className="text-orange-600">friends leaugue</span> will
-                have an entry fee of{" "}
-                <span className="text-orange-600">210 STRK</span>
+              </h2>
+              <p className="text-left ">
+                Each official competition will have <span className="text-orange-600">different entry fee</span>,
+                this is calculated based on the league performance and the amount of users in the platform.<br/>
+                The private leagues or <span className="text-orange-600">friends leaugue</span> willhave an entry fee of{" "}
+                <span className="text-orange-600 font-bold">210 STRK</span>
               </p>
             </div>
             
@@ -157,24 +150,14 @@ export default function RulesContent() {
               </h2>
               <div className="text-left">
                 <p>
-                  Each tournament offers different rewards based on the entry
-                  fee.
+                  Each tournament offers different rewards based on the entry fee.
                 </p>
-                <div className="flex ml-3 pb-2">
-                  <FaTrophy className="text-yellow-400 ml-3 mt-1" />
-                  <span className="ml-3">
-                    Top 3 Winnes - Earn a{" "}
-                    <span className="text-orange-600">STRK</span> prize.
-                  </span>
-                </div>
-                <div className="flex ml-5 lg:ml-9">
-                  <FaMedal className="text-yellow-500 " />
-                  <span className="ml-3">
-                    {" "}
-                    4th & 5th Place - Recive an{" "}
-                    <span className="text-orange-600">exclusive NFT</span>
-                  </span>
-                </div>
+                <p>
+                  <FaTrophy className="text-yellow-400 mx-3 inline-block" /> Top 3 Winnes - Earn a <span className="text-orange-600">STRK</span> prize.
+                </p>
+                <p>
+                  <FaMedal className="text-yellow-500 mx-3 inline-block" /> 4th & 5th Place - Recive an <span className="text-orange-600"> exclusive NFT</span>
+                </p>
               </div>
               <div className="flex rounded-md bg-slate-900 mt-2 p-5">
                 
