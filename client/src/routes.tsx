@@ -75,4 +75,16 @@ const buildRoutes = (paths: string[], base = ""): Route[] => {
 // Crear rutas jerárquicas
 const routes = buildRoutes(Object.keys(pages));
 
+// Check if there is a root route ("/"), if not, add it
+const hasRootRoute = routes.some((route) => route.path === "/");
+
+if (!hasRootRoute) {
+  const RootPage = lazy(pages["./app/page.tsx"]);
+  routes.unshift({
+    path: "/",
+    element: <RootPage />,
+    children: {},
+  });
+}
+
 export default routes;
