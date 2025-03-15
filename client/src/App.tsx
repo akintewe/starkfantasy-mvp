@@ -1,5 +1,4 @@
 import { KeysClause, ToriiQueryBuilder } from "@dojoengine/sdk";
-
 import { ModelsMapping } from "./typescript/models.gen.ts";
 import { useSystemCalls } from "./useSystemCalls.ts";
 import { useAccount } from "@starknet-react/core";
@@ -29,23 +28,17 @@ const renderRoutes = (routes: any) => {
   
 /**
  * Main application component that provides game functionality and UI.
- * Handles entity subscriptions, state management, and user interactions.
- *
- * @param props.sdk - The Dojo SDK instance configured with the game schema
  */
 function App() {
     const { useDojoStore, client } = useDojoSDK();
     const { account } = useAccount();
     const entities = useDojoStore((state) => state.entities);
-
     const { spawn } = useSystemCalls();
-
     const entityId = useEntityId(account?.address ?? "0");
 
     useEntityQuery(
         new ToriiQueryBuilder()
             .withClause(
-                // Querying Moves and Position models that has at least [account.address] as key
                 KeysClause(
                     [ModelsMapping.Moves, ModelsMapping.Position],
                     [addAddressPadding(account?.address ?? "0")],
