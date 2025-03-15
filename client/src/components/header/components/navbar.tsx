@@ -19,7 +19,7 @@ export default function NavBar({ active }: { active?: boolean }) {
   };
 
   return (
-    <div className="py-10">
+    <div className="flex justify-center items-center">
       <nav
         aria-label="Main navigation"
         className={`${

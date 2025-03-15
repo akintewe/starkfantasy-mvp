@@ -18,7 +18,7 @@ const UserBlock: React.FC<UserBlockProps> = ({
     };
 
     return (
-        <div className="absolute right-10 flex flex-col gap-4 items-end my-[-106px]">
+        <div className="flex flex-col gap-4 items-end">
             {/* connected to the wallet */}
             {isConnected ? (
                 <div className="w-[280px] border p-2 justify-center flex gap-3 items-center bg-slate-900 rounded-full hover:opacity-90 transition-opacity">
