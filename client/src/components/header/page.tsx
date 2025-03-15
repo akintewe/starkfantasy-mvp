@@ -4,9 +4,10 @@ import UserBlock from "./components/userBlock";
 
 interface HeaderProps {
   className?: string;
+  title?: boolean;
 }
 
-export default function Header({ className = "" }: HeaderProps) {
+export default function Header({ className = "", title = false }: HeaderProps) {
   return (
     <header
       className={`fixed top-0 left-0 w-full px-4 z-50 lg:py-4 bg-slate-900 lg:bg-transparent ${className}`}
@@ -14,12 +15,15 @@ export default function Header({ className = "" }: HeaderProps) {
       <div className="relative h-[100px]">
         <div className="flex items-center justify-between">
           {/* Logo div */}
-          <div>
+          <div className="flex items-center space-x-2">
             <img
               src="/icons/logo.png"
               alt="Logo"
               className="w-[80px] md:w-[90px] lg:w-[100px]"
             />
+            <h3 className="text-white text-2xl font-medium">
+              {title ? "StarkFantasy League" : ""}
+            </h3>
           </div>
 
           {/* Navbar */}
