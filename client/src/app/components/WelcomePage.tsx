@@ -58,15 +58,15 @@ export default function Home() {
       <section className="bg-slate-950 py-16 px-4">
         <div className="flex flex-col-reverse sm:flex-row items-center justify-between max-w-[90%] sm:max-w-[85%] lg:max-w-[70%] mx-auto gap-6">
           <motion.div
-            className="max-w-[600px] flex items-center justify-center"
+            className="max-w-[600px] grow-[1] flex items-center justify-center"
             initial={{ scale: 0.8, opacity: 0 }}
             whileInView={{ scale: 1, opacity: 1 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <Image src="/welcomepageImages/Icon.png" alt="Icon" width={600} height={100} className="w-full sm:w-auto" />
+            <Image src="/welcomepageImages/Icon.png" alt="Icon" className="sm:w-auto" />
           </motion.div>
-          <div className="text-white text-center sm:text-right w-full sm:w-[550px]">
+          <div className="text-white text-center sm:text-right w-full sm:w-[550px] grow-[3]">
             <h2 className="text-4xl lg:text-5xl tracking-wider mb-4">What is Stark Fantasy League?</h2>
             <p>
               An innovative Web3 <span className="text-orange-500">Fantasy Sports</span> game where players assemble virtual teams, compete in tournaments, and earn rewards.
@@ -203,7 +203,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
     </div>
   );
 
