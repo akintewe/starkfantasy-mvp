@@ -119,22 +119,18 @@ export default function Home() {
 
       {/* Features Section */}
       <section className="bg-slate-900 pb-11 px-4">
-        <div className="text-center py-8 text-xl sm:text-2xl font-semibold">
-          <h2 className="text-white">
+        <div className="text-center py-8 ">
+          <h2 className="text-white leading-snug">
             Powering Fantasy Sports with <br />
-            <span className="text-orange-500">Starknet</span>
+            <span className="text-orange-500 mt-3">Starknet</span>
           </h2>
         </div>
 
-        <div className="flex flex-wrap justify-center gap-6">
+        <div className="flex flex-wrap justify-center gap-16 max-w-[90%] sm:max-w-full mx-auto">
           {[
             {
               img: "transactionlogo1.png",
-              title: (
-                <>
-                  Scalability and Low <br /> Fees
-                </>
-              ),
+              title: "Scalability and Low Fees",
               desc: "Enjoy fast and cost-efficient transactions powered by Starknet's Layer 2 scaling solution."
             },
             {
@@ -154,25 +150,27 @@ export default function Home() {
               whileInView={{ scale: 1, opacity: 1 }}
               transition={{ duration: 0.6 }}
               viewport={{ once: true }}
-              className="w-full sm:w-[350px] border-orange-500 border-4 rounded-xl"
+              className="w-full sm:w-[435px] border-orange-500 border-8 rounded-2xl bg-indigo-900"
             >
               <Image src={`/welcomepageImages/${img}`} alt={desc} width={350} height={200} className="w-full" />
-              <div className="text-white bg-indigo-900 p-4 rounded-b-xl">
-                <h3 className="text-xl sm:text-2xl font-semibold text-center py-4 tracking-wide">{title}</h3>
-                <p className="text-sm mx-auto max-w-[230px]">{desc}</p>
+              <div className="text-white py-4">
+                <h3 className="font-medium text-center py-4 tracking-wide px-4">{title}</h3>
+                <p className="mx-5">{desc}</p>
               </div>
             </motion.div>
           ))}
         </div>
 
         <div className="flex justify-center mt-9">
-          <button className="bg-indigo-900 text-white px-4 py-2 rounded-lg">Learn about Starknet</button>
+          <Button variant="secondary" onClick={() => console.log("Learn about Starknet")} className="mt-6 px-8 py-6">
+            Learn about Starknet
+          </Button>
         </div>
       </section>
 
       {/* Call to Action Section */}
       <section className="bg-slate-950 text-white flex flex-col justify-center items-center py-16 px-4">
-        <h2 className="text-2xl sm:text-3xl mb-6 text-center">What are you waiting for?</h2>
+        <h2 className="mb-6 text-center">What are you waiting for?</h2>
 
         <div className="flex flex-col sm:flex-row gap-10 max-w-4xl mx-auto text-center sm:text-left">
           {/* Left Section */}
@@ -183,9 +181,9 @@ export default function Home() {
               Sign up now and start playing! 🚀
             </p>
             <div className="mt-6 flex justify-center">
-              <button className="bg-orange-500 text-white px-5 py-2 rounded-lg shadow-md">
-                Register Now
-              </button>
+              <Button variant="primary" onClick={() => console.log("Register Now")}>
+                Register Now  
+              </Button>
             </div>
           </div>
 
@@ -194,13 +192,13 @@ export default function Home() {
             <p>
               Want to learn more about us? All you need is right here! From the game rules to the complete working of the on-chain system.
             </p>
-            <div className="mt-4 flex justify-center flex-col items-center sm:items-start gap-3">
-              <button className="bg-indigo-900 text-white px-5 py-2 rounded-lg w-full sm:w-auto shadow-md">
+            <div className=" w-full mt-4 flex justify-center flex-col items-center gap-3">
+              <Button variant="secondary" onClick={() => console.log("About Us")}>
                 About Us
-              </button>
-              <button className="bg-indigo-900 text-white px-5 py-2 rounded-lg w-full sm:w-auto shadow-md">
+              </Button>
+              <Button variant="secondary" onClick={() => console.log("View Our Rules")}>
                 View Our Rules
-              </button>
+              </Button>
             </div>
           </div>
         </div>
