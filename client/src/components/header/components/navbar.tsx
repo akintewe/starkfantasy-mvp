@@ -11,7 +11,7 @@ const pages2 = [
   "Tournaments",
 ];
 
-export default function NavBar({ active }: { active?: boolean }) {
+export default function NavBar() {
   const [currentPage, setCurrentPage] = useState("Home");
 
   const handlePageChange = (page: string) => {
@@ -19,16 +19,30 @@ export default function NavBar({ active }: { active?: boolean }) {
   };
 
   return (
-    <div className="py-10">
       <nav
         aria-label="Main navigation"
-        className={`${
-          active
-            ? "bg-slate-900 rounded-[60px] w-[855px] h-[70px]"
-            : "bg-slate-900 rounded-[40px] w-[700px] h-[70px]"
-        } mx-auto flex justify-center items-center`}
+        className="lg:bg-slate-900 rounded-full px-12 h-[70px] flex items-center justify-center space-x-12 lg:shadow-lg"
       >
-        <ul
+        {
+          pages.map((item) => (
+            <a
+              key={item}
+              href={`#${item.toLowerCase()}`}
+              className={`transition-colors font-bold ${
+                currentPage === item
+                  ? "text-amber-500"
+                  : "text-white hover:text-orange-500 hover:underline"
+              }`}
+              onClick={() => handlePageChange(item)}
+            >
+              {item}
+            </a>
+          ))
+        }
+
+
+
+        {/* <ul
           className={`flex ${
             active ? "w-full px-10" : "w-[595px]"
           } h-[22px] justify-between`}
@@ -55,9 +69,8 @@ export default function NavBar({ active }: { active?: boolean }) {
                 {page}
               </a>
             </li>
-          ))}
-        </ul>
+          ))} */}
+        {/* </ul> */}
       </nav>
-    </div>
   );
 }

@@ -1,7 +1,7 @@
 
 const Footer = () => {
     return (
-        <footer className=" mt-auto bg-slate-900">
+        <footer className="mt-auto bg-slate-900">
             <section className="flex justify-between items-center mx-10 mb-3 border-b-[1px]">
                 <div className="flex justify-center items-center gap-4">
                     <div>
@@ -21,7 +21,7 @@ const Footer = () => {
                     </ul>
                 </div>
             </section>
-            <div className="flex text-[#ededed] justify-center items-center mb-5 pb-3">
+            <div className="flex text-[#ededed] justify-center items-center pb-5">
                 <small>Copyright &copy; 2025 - Starkfantasy League</small>
             </div>
         </footer>
