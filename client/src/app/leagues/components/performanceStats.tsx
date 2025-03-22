@@ -3,7 +3,7 @@ import userClock from "../../../../public/leagues/user-clock.svg";
 
 interface PerformanceStatsProps {
   title: string;
-  value: number;
+  value: string | number;
 }
 
 const performanceStats: PerformanceStatsProps[] = [
@@ -21,7 +21,7 @@ const performanceStats: PerformanceStatsProps[] = [
   },
   {
     title: "Team Value",
-    value: 12,
+    value: "12.234STRK",
   },
 ];
 
@@ -41,7 +41,7 @@ const PerformanceStats = () => {
               className="flex bg-[#1E2939] py-2.5 px-4 my-3 rounded-full justify-between items-center text-xl  "
             >
               <h4>{stats.title}</h4>
-              <p>{stats.value}STRK</p>
+              <p>{stats.value}</p>
             </div>
           );
         })}
