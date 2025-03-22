@@ -45,8 +45,8 @@ function App() {
     //         .includeHashedKeys()
     // );
 
-    const moves = useModel(entityId as string, ModelsMapping.Moves);
-    const position = useModel(entityId as string, ModelsMapping.Position);
+    // const moves = useModel(entityId as string, ModelsMapping.Moves);
+    // const position = useModel(entityId as string, ModelsMapping.Position);
 
     return (
       <BrowserRouter>
