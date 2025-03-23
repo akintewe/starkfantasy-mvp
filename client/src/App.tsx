@@ -6,6 +6,8 @@ import { WalletAccount } from "./wallet-account.tsx";
 import { HistoricalEvents } from "./historical-events.tsx";
 import {
     useDojoSDK,
+    useEntityId,
+    useEntityQuery,
     useModel,
 } from "@dojoengine/sdk/react";
 import { addAddressPadding, CairoCustomEnum } from "starknet";
@@ -32,21 +34,22 @@ function App() {
     const { account } = useAccount();
     const entities = useDojoStore((state) => state.entities);
     const { spawn } = useSystemCalls();
+    const entityId = useEntityId(account?.address ?? "0");
 
-    // useEntityQuery(
-    //     new ToriiQueryBuilder()
-    //         .withClause(
-    //             KeysClause(
-    //                 [ModelsMapping.Moves, ModelsMapping.Position],
-    //                 [addAddressPadding(account?.address ?? "0")],
-    //                 "FixedLen"
-    //             ).build()
-    //         )
-    //         .includeHashedKeys()
-    // );
+    useEntityQuery(
+        new ToriiQueryBuilder()
+            .withClause(
+                KeysClause(
+                    [ModelsMapping.Moves, ModelsMapping.Position],
+                    [addAddressPadding(account?.address ?? "0")],
+                    "FixedLen"
+                ).build()
+            )
+            .includeHashedKeys()
+    );
 
-    // const moves = useModel(entityId as string, ModelsMapping.Moves);
-    // const position = useModel(entityId as string, ModelsMapping.Position);
+    const moves = useModel(entityId as string, ModelsMapping.Moves);
+    const position = useModel(entityId as string, ModelsMapping.Position);
 
     return (
       <BrowserRouter>
