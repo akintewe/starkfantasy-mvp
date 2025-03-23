@@ -42,7 +42,7 @@ const TopScorers = () => {
   const [players] = useState<Player[]>(initialPlayers);
 
   return (
-    <div className="w-full rounded-lg bg-[#0F172B]/80 p-4">
+    <div className="w-full rounded-lg bg-[#141E33] p-4">
       <div className="flex items-center mb-4">
         <div className="text-[#FF6900] text-5xl mr-4">
           <img src="/icons/trophy.svg" alt="Trophy" width={72} height={72} />
