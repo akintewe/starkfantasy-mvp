@@ -4,7 +4,7 @@ import bg from "../../public/icons/leagueBg.png";
 const Demo = () => {
 	return (
 		<main
-			className=" min-h-[100vh] flex flex-col py-[50px] px-4 md:px-[200px]"
+			className=" min-h-[100vh] flex flex-col py-[50px] px-4 xl:px-[200px]"
 			style={{
 				backgroundImage: `url(${bg})`,
 				backgroundSize: "cover",
