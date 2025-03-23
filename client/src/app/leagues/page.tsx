@@ -1,12 +1,7 @@
 import React from "react";
-import PerformanceStats from "./components/performanceStats";
 
-const page = () => {
-  return (
-    <div className="">
-      <PerformanceStats />
-    </div>
-  );
-};
+function page() {
+  return <div>page</div>;
+}
 
 export default page;
