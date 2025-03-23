@@ -9,7 +9,7 @@
  */
 
 import { ComponentType, lazy } from "react";
-import Test from "./app/test";
+import Demo from "./app/demo";
 
 type LayoutModule = {
 	default: ComponentType<any>;
@@ -88,8 +88,8 @@ if (!hasRootRoute) {
 }
 
 routes.push({
-	path: "/test",
-	element: <Test />,
+	path: "/demo",
+	element: <Demo />,
 	children: {},
 });
 

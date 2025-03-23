@@ -53,11 +53,9 @@ const Table: React.FC<TableProps> = ({ players: initialPlayers }) => {
 		return ["ALL", ...uniqueTeams];
 	}, [initialPlayers]);
 
-
 	const priceRanges = useMemo(() => {
 		return ["ALL", "< 200", "200–249", "250+"];
 	}, []);
-
 
 	const filteredPlayers = useMemo(() => {
 		let result = [...initialPlayers];
@@ -76,7 +74,6 @@ const Table: React.FC<TableProps> = ({ players: initialPlayers }) => {
 			result = result.filter((player) => player.team === teamFilter);
 		}
 
-		// Updated price filtering logic
 		if (priceFilter !== "ALL") {
 			if (priceFilter === "< 200") {
 				result = result.filter((player) => player.price < 200);
@@ -155,9 +152,6 @@ const Table: React.FC<TableProps> = ({ players: initialPlayers }) => {
 		},
 	};
 
-  
-
-
 	return (
 		<div className="w-full px-[25px] pt-[30px] pb-[84px] bg-[#0F172BE5] text-white rounded-lg">
 			<div className="flex justify-between gap-4 flex-wrap mb-[20px]">
@@ -208,7 +202,6 @@ const Table: React.FC<TableProps> = ({ players: initialPlayers }) => {
 						</div>
 					</div>
 
-
 					<div className="flex flex-col w-full">
 						<label className="text-gray-300 text-base font-medium mb-1 text-center">
 							Price (STRK)
@@ -242,7 +235,7 @@ const Table: React.FC<TableProps> = ({ players: initialPlayers }) => {
 						<input
 							type="text"
 							placeholder={isSearchExpanded ? "Search players..." : ""}
-							className="bg-indigo-900 text-white text-[14px] font-medium py-[20px] px-[20px] rounded-[10px]  focus:outline-none focus:ring-2 focus:transparent w-full"
+							className="bg-indigo-900 text-white text-[14px] font-medium py-[20px] px-[20px] rounded-[10px] focus:outline-none focus:ring-2 focus:transparent w-full"
 							value={searchQuery}
 							onChange={(e) => setSearchQuery(e.target.value)}
 							onFocus={() => setIsSearchExpanded(true)}
@@ -252,7 +245,7 @@ const Table: React.FC<TableProps> = ({ players: initialPlayers }) => {
 							aria-label="Search players"
 						/>
 						<span
-							className="absolute right-[20px] top-1/2  transform -translate-y-1/2 text-white cursor-pointer"
+							className="absolute right-[20px] top-1/2 transform -translate-y-1/2 text-white cursor-pointer"
 							onClick={() => setIsSearchExpanded(true)}
 						>
 							<img src={search} alt="search" />
@@ -268,17 +261,17 @@ const Table: React.FC<TableProps> = ({ players: initialPlayers }) => {
 					position: "relative",
 				}}
 			>
-				<table className="w-full text-left">
+				<table className="w-full text-left table-fixed min-w-[700px]">
 					<thead className="z-40">
 						<tr className="bg-indigo-800 text-gray-300 font-normal">
-							<th className="p-3 text-left font-normal text-[17px] rounded-tl-[10px] sticky top-0 bg-indigo-800">
+							<th className="table-ha text-left  text-[17px] rounded-tl-[10px]  w-[250px]">
 								Player
 							</th>
-							<th className="p-3 text-center font-normal text-[17px] sticky top-0 bg-indigo-800 border-r-[0.5px] border-gray-300">
+							<th className="table-ha text-center text-[17px]   border-r-[0.5px] border-gray-300 w-[120px]">
 								Price
 							</th>
 							<motion.th
-								className="p-3 cursor-pointer hover:bg-indigo-700 transition-colors text-center sticky top-0 bg-indigo-800"
+								className="table-ha cursor-pointer hover:bg-indigo-700 transition-colors text-center   w-[120px]"
 								onClick={() => sortBy("pointsPerMatch")}
 								aria-label="Sort by points per match"
 								whileHover={{
@@ -286,7 +279,7 @@ const Table: React.FC<TableProps> = ({ players: initialPlayers }) => {
 									transition: { duration: 0.2, ease: "easeInOut" },
 								}}
 							>
-								<span className="flex font-normal text-[17px]  items-center justify-center">
+								<span className="flex font-normal text-[17px] items-center justify-center">
 									Pts/Match
 									<motion.img
 										className="pl-2 w-[28px]"
@@ -307,7 +300,7 @@ const Table: React.FC<TableProps> = ({ players: initialPlayers }) => {
 								</span>
 							</motion.th>
 							<motion.th
-								className="p-3 cursor-pointer font-normal hover:bg-indigo-700 transition-colors text-center sticky top-0 bg-indigo-800"
+								className="table-ha cursor-pointer  hover:bg-indigo-700 transition-colors text-center  w-[120px]"
 								onClick={() => sortBy("selectedPercentage")}
 								aria-label="Sort by selected percentage"
 								whileHover={{
@@ -336,7 +329,7 @@ const Table: React.FC<TableProps> = ({ players: initialPlayers }) => {
 								</span>
 							</motion.th>
 							<motion.th
-								className="p-3 cursor-pointer font-normal hover:bg-indigo-700 transition-colors text-center sticky top-0 bg-indigo-800"
+								className="table-ha cursor-pointer hover:bg-indigo-700 transition-colors text-center  w-[100px]"
 								onClick={() => sortBy("goals")}
 								aria-label="Sort by goals"
 								whileHover={{
@@ -361,7 +354,7 @@ const Table: React.FC<TableProps> = ({ players: initialPlayers }) => {
 								</span>
 							</motion.th>
 							<motion.th
-								className="p-3 cursor-pointer font-normal hover:bg-indigo-700 transition-colors text-center sticky top-0 bg-indigo-800"
+								className="table-ha cursor-pointer hover:bg-indigo-700 transition-colors text-center  w-[100px]"
 								onClick={() => sortBy("assists")}
 								aria-label="Sort by assists"
 								whileHover={{
@@ -388,7 +381,7 @@ const Table: React.FC<TableProps> = ({ players: initialPlayers }) => {
 								</span>
 							</motion.th>
 							<motion.th
-								className="p-3 rounded-tr-[10px] cursor-pointer font-normal hover:bg-indigo-700 transition-colors text-center sticky top-0 bg-indigo-800"
+								className="table-ha rounded-tr-[10px] cursor-pointer hover:bg-indigo-700 transition-colors text-center sticky top-0 bg-indigo-800 w-[150px]"
 								onClick={() => sortBy("minutesPlayed")}
 								aria-label="Sort by minutes played"
 								whileHover={{
@@ -435,10 +428,10 @@ const Table: React.FC<TableProps> = ({ players: initialPlayers }) => {
 									}}
 								>
 									<td
-										className="px-[10px] py-[8px] flex items-center space-x-3"
+										className="px-[10px] py-[8px] flex  gap-3 items-center space-x-3"
 										style={{ minHeight: "50px" }}
 									>
-										<div className="w-8 h-8 bg-gray-600 rounded-full"></div>
+										<div className="w-8 h-8 bg-[#D9D9D9] rounded-full"></div>
 										<div>
 											<p className="text-sm">{player.name}</p>
 											<p className="text-amber-500 text-sm flex items-center gap-1">
@@ -449,7 +442,7 @@ const Table: React.FC<TableProps> = ({ players: initialPlayers }) => {
 										</div>
 									</td>
 									<td
-										className="border-r-[0.5px] border-gray-300"
+										className="border-r-[0.5px] border-gray-300 w-[120px]"
 										style={{ minHeight: "48px" }}
 									>
 										<div className="text-center">
@@ -457,36 +450,11 @@ const Table: React.FC<TableProps> = ({ players: initialPlayers }) => {
 											<p className="text-sm font-bold">STRK</p>
 										</div>
 									</td>
-									<td
-										className="px-[10px] py-[8px] text-center text-sm font-normal"
-										style={{ minHeight: "48px" }}
-									>
-										{player.pointsPerMatch}
-									</td>
-									<td
-										className="px-[10px] py-[8px] text-center text-sm font-normal"
-										style={{ minHeight: "48px" }}
-									>
-										{player.selectedPercentage}%
-									</td>
-									<td
-										className="px-[10px] py-[8px] text-center text-sm font-normal"
-										style={{ minHeight: "48px" }}
-									>
-										{player.goals}
-									</td>
-									<td
-										className="px-[10px] py-[8px] text-center text-sm font-normal"
-										style={{ minHeight: "48px" }}
-									>
-										{player.assists}
-									</td>
-									<td
-										className="px-[10px] py-[8px] text-center text-sm font-normal"
-										style={{ minHeight: "48px" }}
-									>
-										{player.minutesPlayed}
-									</td>
+									<td className="table-cell">{player.pointsPerMatch}</td>
+									<td className="table-cell">{player.selectedPercentage}%</td>
+									<td className="table-cell">{player.goals}</td>
+									<td className="table-cell">{player.assists}</td>
+									<td className="table-cell">{player.minutesPlayed}</td>
 								</motion.tr>
 							))}
 						</AnimatePresence>
