@@ -43,18 +43,18 @@ export default function UpcomingMatches() {
   ];
 
   return (
-    <div className="text-white bg-neutral/80 w-full space-y-[30px] max-w-sm md:max-w-3xl rounded-lg p-6 backdrop-blur-sm">
+    <div className="text-white bg-[#0F172B]/80 w-full space-y-[30px] max-w-sm md:max-w-3xl rounded-lg p-6 ">
       <div className="flex items-center gap-3 ">
         <img src="/icons/calendar.svg" alt="" />
 
-        <h3 className="text-xl sm:text-4xl font-medium sm:font-semibold">Upcoming matches</h3>
+        <h3 className="text-xl sm:text-4xl text-white font-medium sm:font-semibold">Upcoming matches</h3>
       </div>
 
       <div className="flex flex-col gap-4">
         {matches.map((match) => (
           <div
             key={match.id}
-            className="bg-gray-800/80 rounded-lg px-5 py-2.5 flex justify-between items-center"
+            className="bg-[#1E2939] rounded-lg px-5 py-2.5 flex justify-between items-center"
           >
             <div>
               <div className="text-base sm:text-xl font-medium text-white">
