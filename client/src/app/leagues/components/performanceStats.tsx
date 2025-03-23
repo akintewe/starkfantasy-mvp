@@ -27,7 +27,7 @@ const performanceStats: PerformanceStatsProps[] = [
 
 const PerformanceStats = () => {
   return (
-    <div className="w-[650px] bg-[#0f172b] -z-10 rounded-2xl text-white p-5">
+    <div className="w-[650px] bg-[#0F172BCC] -z-10 rounded-[20px] text-white p-5">
       <div className="flex items-center pb-3.5 space-x-4">
         <img src={userClock} alt="icon" />
         <h1 className="text-[40px]">Your Performance</h1>
