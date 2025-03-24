@@ -11,4 +11,6 @@ pub mod models {
     pub mod vec2;
 }
 
+pub mod constants;
+
 pub mod tests {}
