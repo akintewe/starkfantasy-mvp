@@ -25,8 +25,6 @@ StarkFantasy is the next generation of fantasy sports built on Starknet, bringin
 
 ## Roadmap 🗺️
 
-## 🗺️ Roadmap
-
 ### Q2 2025 (April - June): MVP Launch
 - ⚽ Premier League API integration and data consumption
 - 👥 Team creation system with 11-player selection
