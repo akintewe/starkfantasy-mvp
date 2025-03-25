@@ -1,4 +1,3 @@
-use starknet::{ContractAddress};
 use starknet::get_block_timestamp;
 use starkfantasy::helpers::timestamp::Timestamp;
 use starkfantasy::constants;
@@ -8,7 +7,6 @@ use starkfantasy::constants;
 struct Tournament {
     #[key]
     pub id: u64,
-    pub owner: ContractAddress,
     pub name: felt252,
     pub description: felt252,
     pub entry_fee: u256,
@@ -26,7 +24,6 @@ struct Tournament {
 #[generate_trait]
 pub impl TournamentImpl of TournamentTrait {
     fn create_tournament(
-        owner: ContractAddress,
         name: felt252,
         description: felt252,
         entry_fee: u256,
@@ -44,11 +41,10 @@ pub impl TournamentImpl of TournamentTrait {
         assert(max_players_per_team > 0, 'Max players must be positive');
         
         // ID generation (in a real system, this could come from an ID generator)
-        let id = generate_tournament_id();
+        let id = 1;
         
         Tournament {
             id,
-            owner,
             name,
             description,
             entry_fee,
@@ -116,12 +112,6 @@ pub impl TournamentImpl of TournamentTrait {
         }
     }
     
-    // Cancel tournament
-    fn cancel_tournament(ref self: Tournament) {
-        assert(self.status == constants::TOURNAMENT_STATUS_UPCOMING, 'Can only cancel upcoming');
-        self.status = constants::TOURNAMENT_STATUS_CANCELLED;
-    }
-    
     // === Participation methods ===
     
     // Register participant (increases counter and prize pool)
@@ -129,14 +119,6 @@ pub impl TournamentImpl of TournamentTrait {
         assert(self.status == constants::TOURNAMENT_STATUS_UPCOMING, 'Registration closed');
         self.total_participants += 1;
         self.total_prize_pool += self.entry_fee;
-    }
-    
-    // Deregister participant (if still possible)
-    fn unregister_participant(ref self: Tournament) {
-        assert(self.status == constants::TOURNAMENT_STATUS_UPCOMING, 'Cannot unregister now');
-        assert(self.total_participants > 0, 'No participants');
-        self.total_participants -= 1;
-        self.total_prize_pool -= self.entry_fee;
     }
     
     // === Auxiliary and query methods ===
@@ -185,31 +167,19 @@ pub impl TournamentImpl of TournamentTrait {
     }
 }
 
-// Auxiliary function to generate tournament IDs
-// Note: In a real implementation, this could be part of a more complex system
-fn generate_tournament_id() -> u64 {
-    // Simplified for the example - in a real system you might use a global counter
-    // or some other method to generate unique IDs
-    let timestamp = get_block_timestamp();
-    timestamp
-}
-
 #[cfg(test)]
 mod tests {
     use super::{Tournament, TournamentImpl};
-    use starknet::contract_address_const;
     use starknet::get_block_timestamp;
     use starkfantasy::constants;
     use starkfantasy::helpers::timestamp::Timestamp;
 
     // Helper function to create a test tournament
     fn create_test_tournament() -> Tournament {
-        let owner = contract_address_const::<0x123>();
         let current_time = get_block_timestamp();
         
         Tournament {
             id: 1_u64,
-            owner,
             name: 'Test Tournament',
             description: 'Tournament for testing',
             entry_fee: 100_u256,
@@ -228,11 +198,9 @@ mod tests {
     #[test]
     #[available_gas(1000000)]
     fn test_tournament_creation() {
-        let owner = contract_address_const::<0x123>();
         let current_time = get_block_timestamp();
         
         let tournament = TournamentImpl::create_tournament(
-            owner,
             'Test Tournament',
             'Tournament for testing',
             100_u256,
@@ -244,7 +212,6 @@ mod tests {
             2_u32
         );
         
-        assert(tournament.owner == owner, 'Owner should match');
         assert(tournament.name == 'Test Tournament', 'Name should match');
         assert(tournament.entry_fee == 100_u256, 'Entry fee should match');
         assert(tournament.status == constants::TOURNAMENT_STATUS_UPCOMING, 'Status should be upcoming');
@@ -256,7 +223,6 @@ mod tests {
     #[available_gas(1000000)]
     #[should_panic(expected: ('Start time in the past',))]
     fn test_tournament_creation_past_start_time() {
-        let owner = contract_address_const::<0x123>();
         let current_time = get_block_timestamp();
         
         // Calculate a safe past time
@@ -268,7 +234,6 @@ mod tests {
         
         // Attempt to create a tournament with a past start date
         TournamentImpl::create_tournament(
-            owner,
             'Past Tournament',
             'This should fail',
             100_u256,
@@ -347,22 +312,6 @@ mod tests {
     
     #[test]
     #[available_gas(1000000)]
-    fn test_participant_unregistration() {
-        let mut tournament = create_test_tournament();
-        
-        // Register two participants
-        TournamentImpl::register_participant(ref tournament);
-        TournamentImpl::register_participant(ref tournament);
-        
-        // Unregister a participant
-        TournamentImpl::unregister_participant(ref tournament);
-        
-        assert(tournament.total_participants == 1_u32, 'Should have 1 participant');
-        assert(tournament.total_prize_pool == 100_u256, 'Prize pool should be 100');
-    }
-    
-    #[test]
-    #[available_gas(1000000)]
     #[should_panic(expected: ('Registration closed',))]
     fn test_register_to_active_tournament() {
         let mut tournament = create_test_tournament();
@@ -420,29 +369,6 @@ mod tests {
         
         // It should have changed to finished
         assert(tournament.status == constants::TOURNAMENT_STATUS_FINISHED, 'Should be finished');
-    }
-    
-    #[test]
-    #[available_gas(1000000)]
-    fn test_cancel_tournament() {
-        let mut tournament = create_test_tournament();
-        
-        // Cancel tournament
-        TournamentImpl::cancel_tournament(ref tournament);
-        
-        // Verify that it was canceled
-        assert(tournament.status == constants::TOURNAMENT_STATUS_CANCELLED, 'Should be cancelled');
-    }
-    
-    #[test]
-    #[available_gas(1000000)]
-    #[should_panic(expected: ('Can only cancel upcoming',))]
-    fn test_cancel_active_tournament() {
-        let mut tournament = create_test_tournament();
-        tournament.status = constants::TOURNAMENT_STATUS_ACTIVE;
-        
-        // Attempt to cancel an active tournament
-        TournamentImpl::cancel_tournament(ref tournament);
     }
     
     #[test]
