@@ -9,6 +9,13 @@ pub mod models {
     pub mod formation;
     pub mod moves;
     pub mod vec2;
+    pub mod user;
+
+
+pub mod types {
+    pub mod player_position;
+    pub mod team;
+    pub mod team_player;
 }
 
 pub mod tests {}
