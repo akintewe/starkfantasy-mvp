@@ -23,7 +23,7 @@ const calculatePoints = (player: Player) => {
   const pointsForGoals = player.goals * 10;
   const pointsForAssists = player.assists * 5;
   const pointsForMinutes = Math.floor(player.minutesPlayed / 90);
-  return pointsForGoals + pointsForAssists + pointsForMinutes;
+  return (pointsForGoals + pointsForAssists + pointsForMinutes) * 5;
 };
 
 const positions = ["ALL POSITIONS", ...new Set(playersData.map((player) => player.position))] as const;
@@ -170,8 +170,8 @@ const Market = () => {
   return (
     <main className="min-h-screen text-white">
       <h2 className="text-5xl font-bold mb-6">Market</h2>
-      <section className="flex flex-col py-[15px] px-[20px] rounded-[15px] justify-between md:flex-row gap-4 mb-8 bg-[#0F172BCC]">
-        <section className="flex gap-[25px]">
+      <section className="flex flex-col py-[15px] px-[20px] rounded-[15px] justify-between md:flex-row flex-wrap gap-4 mb-8 bg-[#0F172BCC]">
+        <section className="flex flex-wrap md:flex-nowrap gap-[18px] md:gap-[25px]">
           <Select
             data={positions}
             value={positionFilter}
@@ -191,7 +191,7 @@ const Market = () => {
             aria-label="Filter by points"
           />
         </section>
-        <div className="relative min-w-[420px]">
+        <div className="relative w-full md:w-[420px]">
           <input
             type="text"
             className="bg-gray-900 text-white text-[14px] font-medium py-3 px-4 rounded-[20px] border-[0.5px] border-[#1E2939] focus:outline-none focus:ring-0 focus:transparent w-full"
@@ -310,24 +310,24 @@ const Market = () => {
           })}
         </AnimatePresence>
       </section>
-      <Modal isOpen={isModalOpen} onClose={closeModal}>
+      <Modal isOpen={isModalOpen} bg={selectedPlayer?.bgColor || ""} onClose={closeModal}>
         {selectedPlayer && (
           <div className="flex flex-col w-full">
             <div
-              className="relative h-[280px] rounded-t-[15px] bg-cover bg-center"
+              className="relative h-[200px] sm:h-[240px] md:h-[280px] rounded-t-[15px] bg-cover bg-center"
               style={{
                 backgroundImage: `url(${selectedPlayer.image})`,
                 backgroundPosition: "top",
               }}
             >
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent rounded-t-[15px]"></div>
-              <div className="relative flex flex-col justify-between p-[15px]">
+              <div className="relative flex flex-col justify-between p-[10px] sm:p-[15px]">
                 <div className="flex items-center justify-between">
-                  <span className="inline-block bg-cyan-900 text-white text-xs font-semibold px-2 py-1 rounded-[20px]">
+                  <span className="inline-block bg-cyan-900 text-white text-[10px] sm:text-xs font-semibold px-2 py-1 rounded-[20px]">
                     {selectedPlayer.position}
                   </span>
                   <button
-                    className="text-white text-[25px] hover:text-white"
+                    className="text-white text-[20px] sm:text-[25px] hover:text-white"
                     onClick={closeModal}
                     aria-label="Close modal"
                   >
@@ -336,11 +336,11 @@ const Market = () => {
                 </div>
               </div>
             </div>
-            <div className="flex flex-col bg-slate-950 pt-[25px] px-[30px] pb-[30px]">
-              <div className="flex items-start justify-between pt-[30px] pb-[20px]">
+            <div className="flex flex-col bg-slate-950 pt-[15px] sm:pt-[25px] px-[15px] sm:px-[30px] pb-[20px] sm:pb-[30px]">
+              <div className="flex flex-col sm:flex-row items-start justify-between pt-[20px] sm:pt-[30px] pb-[15px] sm:pb-[20px] gap-4">
                 <div className="flex flex-col gap-[1px] mt-[-12px]">
-                  <h3 className="text-[40px] font-semibold">{selectedPlayer.name}</h3>
-                  <p className="text-[20px] text-gray-300">{selectedPlayer.team}</p>
+                  <h3 className="text-[28px] sm:text-[34px] md:text-[40px] font-semibold">{selectedPlayer.name}</h3>
+                  <p className="text-[16px] sm:text-[18px] md:text-[20px] text-gray-300">{selectedPlayer.team}</p>
                   <div className="flex items-center gap-1 my-2">
                     {[...Array(5)].map((_, i) => (
                       <motion.span
@@ -356,33 +356,33 @@ const Market = () => {
                         custom={i}
                         whileHover="twinkle"
                       >
-                        <img src={star} alt="star" className="w-6 h-6" />
+                        <img src={star} alt="star" className="w-5 h-5 sm:w-6 sm:h-6" />
                       </motion.span>
                     ))}
                   </div>
                 </div>
-                <div className="bg-orange-500 flex items-center justify-center gap-[5px] w-[163px] h-[60px] text-white rounded-[15px] px-[12px] py-[12px]">
-                  <img src={starPoint} alt="star point" className="w-[40px] h-[40px]" />
-                  <p className="text-[30px] font-medium">{calculatePoints(selectedPlayer)}</p>
+                <div className="bg-orange-500 flex items-center justify-center gap-[5px] w-[120px] sm:w-[140px] md:w-[163px] h-[50px] sm:h-[55px] md:h-[60px] text-white rounded-[15px] px-[10px] sm:px-[12px] py-[10px] sm:py-[12px]">
+                  <img src={starPoint} alt="star point" className="w-[30px] h-[30px] sm:w-[35px] sm:h-[35px] md:w-[40px] md:h-[40px]" />
+                  <p className="text-[24px] sm:text-[26px] md:text-[30px] font-medium">{calculatePoints(selectedPlayer)}</p>
                 </div>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div className="bg-gray-900  p-4 rounded-lg border-[2px] border-indigo-900">
-                  <p className="text-base font-bold uppercase text-indigo-800 mb-2">
+                <div className="bg-gray-900 p-4 rounded-lg border-[2px] border-indigo-900">
+                  <p className="text-sm sm:text-base font-bold uppercase text-indigo-800 mb-2">
                     Season Stats
                   </p>
-                  <p className="text-[20px] flex justify-between">
+                  <p className="text-[16px] sm:text-[18px] md:text-[20px] flex justify-between">
                     Goals: <span className="font-bold">{selectedPlayer.goals}</span>
                   </p>
-                  <p className="text-[20px] flex justify-between">
+                  <p className="text-[16px] sm:text-[18px] md:text-[20px] flex justify-between">
                     Assists: <span className="font-bold">{selectedPlayer.assists}</span>
                   </p>
                 </div>
                 <div className="bg-gray-900 p-4 rounded-lg border-[2px] border-indigo-900">
-                  <p className="text-base font-bold uppercase text-indigo-800 mb-2">
+                  <p className="text-sm sm:text-[20px] font-bold uppercase text-indigo-800 mb-2">
                     Performance
                   </p>
-                  <div className="h-[160px] flex justify-center items-center">
+                  <div className="h-[200px] sm:h-[190px] flex justify-center items-center">
                     {(() => {
                       const stats = [
                         selectedPlayer.goals * 2,
@@ -449,13 +449,13 @@ const Market = () => {
                 </div>
               </div>
               <motion.button
-                className="mt-6 w-full bg-orange-600 text-white py-[5px] px-4 rounded-lg flex items-center justify-center gap-2"
+                className="mt-4 sm:mt-6 w-full bg-orange-600 text-white py-[5px] px-4 rounded-lg flex items-center justify-center gap-2"
                 whileHover={{ scale: 1.025 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={() => addToTeam()}
               >
-                <img src={plus} alt="plus" className="w-[40px] h-[40px]" />
-                <p className="text-base font-semibold">
+                <img src={plus} alt="plus" className="w-[30px] h-[30px] sm:w-[40px] sm:h-[40px]" />
+                <p className="text-sm sm:text-base font-semibold">
                   Add to team - {calculatePoints(selectedPlayer)} points
                 </p>
               </motion.button>

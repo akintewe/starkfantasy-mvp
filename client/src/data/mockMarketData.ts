@@ -23,6 +23,7 @@ export type Player = {
   speed: number;
   shooting?: number;
   dribbling?: number;
+  bgColor: string;
 };
 
 export const playersData: Player[] = [
@@ -40,6 +41,7 @@ export const playersData: Player[] = [
     speed: 50,
     shooting: 80,
     dribbling: 59,
+    bgColor: "bg-teal-600",
   },
   {
     name: "Thibaut Courtois",
@@ -55,6 +57,7 @@ export const playersData: Player[] = [
     speed: 65,
     shooting: 60,
     dribbling: 50,
+    bgColor: "bg-indigo-700",
   },
   {
     name: "Virgil van Dijk",
@@ -70,6 +73,7 @@ export const playersData: Player[] = [
     speed: 70,
     shooting: 60,
     dribbling: 70,
+    bgColor: "bg-emerald-600",
   },
   {
     name: "Ruben Dias",
@@ -85,6 +89,7 @@ export const playersData: Player[] = [
     speed: 75,
     shooting: 50,
     dribbling: 65,
+    bgColor: "bg-sky-600",
   },
   {
     name: "Kevin De Bruyne",
@@ -100,6 +105,7 @@ export const playersData: Player[] = [
     speed: 75,
     shooting: 90,
     dribbling: 80,
+    bgColor: "bg-cyan-600",
   },
   {
     name: "Jude Bellingham",
@@ -115,6 +121,7 @@ export const playersData: Player[] = [
     speed: 80,
     shooting: 82,
     dribbling: 75,
+    bgColor: "bg-purple-700",
   },
   {
     name: "Lionel Messi",
@@ -130,6 +137,7 @@ export const playersData: Player[] = [
     speed: 75,
     shooting: 80,
     dribbling: 99,
+    bgColor: "bg-pink-600",
   },
   {
     name: "Kylian Mbappe",
@@ -142,9 +150,10 @@ export const playersData: Player[] = [
     assists: 12,
     minutesPlayed: 2280,
     image: kylianMbappe,
-    speed: 95, 
+    speed: 95,
     shooting: 85,
     dribbling: 90,
+    bgColor: "bg-rose-600",
   },
   {
     name: "Erling Haaland",
@@ -160,6 +169,7 @@ export const playersData: Player[] = [
     speed: 84,
     shooting: 89,
     dribbling: 70,
+    bgColor: "bg-amber-600",
   },
   {
     name: "Mohamed Salah",
@@ -175,5 +185,6 @@ export const playersData: Player[] = [
     speed: 89,
     shooting: 83,
     dribbling: 82,
+    bgColor: "bg-red-600",
   },
 ];
