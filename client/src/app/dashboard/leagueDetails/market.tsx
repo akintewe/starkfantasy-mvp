@@ -226,7 +226,7 @@ const Market = () => {
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent rounded-t-[15px]"></div>
                   <div className="relative flex flex-col h-full justify-between">
                     <motion.span
-                      className="self-end bg-cyan-900 text-white text-xs font-semibold px-2 py-1 rounded-[20px]"
+                      className="self-end bg-cyan-900 text-white text-xs font-semibold px-4 py-[6px] rounded-[20px]"
                       variants={positionTagVariants}
                       initial="rest"
                       whileHover="hover"
@@ -238,7 +238,7 @@ const Market = () => {
                         <h3 className="text-lg font-semibold">{player.name}</h3>
                         <p className="text-sm text-gray-300">{player.team}</p>
                         <div className="flex items-center gap-1 my-2">
-                          {[...Array(5)].map((_, i) => (
+                          {[...Array(player.stars)].map((_, i) => (
                             <motion.span
                               key={i}
                               className={
@@ -313,7 +313,7 @@ const Market = () => {
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent rounded-t-[15px]"></div>
               <div className="relative flex flex-col justify-between p-[10px] sm:p-[15px]">
                 <div className="flex items-center justify-between">
-                  <span className="inline-block bg-cyan-900 text-white text-[10px] sm:text-xs font-semibold px-2 py-1 rounded-[20px]">
+                  <span className="inline-block bg-cyan-900 text-white text-[10px] sm:text-xs font-semibold px-4 py-[6px] rounded-[20px]">
                     {selectedPlayer.position}
                   </span>
                   <button
@@ -332,7 +332,7 @@ const Market = () => {
                   <h3 className="text-[28px] sm:text-[34px] md:text-[40px] font-semibold">{selectedPlayer.name}</h3>
                   <p className="text-[16px] sm:text-[18px] md:text-[20px] text-gray-300">{selectedPlayer.team}</p>
                   <div className="flex items-center gap-1 my-2">
-                    {[...Array(5)].map((_, i) => (
+                    {[...Array(selectedPlayer.stars)].map((_, i) => (
                       <motion.span
                         key={i}
                         className={

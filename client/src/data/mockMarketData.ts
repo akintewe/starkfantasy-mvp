@@ -24,6 +24,7 @@ export type Player = {
   shooting?: number;
   dribbling?: number;
   bgColor: string;
+  stars:number
 };
 
 export const playersData: Player[] = [
@@ -42,6 +43,7 @@ export const playersData: Player[] = [
     shooting: 80,
     dribbling: 59,
     bgColor: "bg-teal-600",
+    stars:4
   },
   {
     name: "Thibaut Courtois",
@@ -58,6 +60,7 @@ export const playersData: Player[] = [
     shooting: 60,
     dribbling: 50,
     bgColor: "bg-indigo-700",
+    stars:4
   },
   {
     name: "Virgil van Dijk",
@@ -74,6 +77,7 @@ export const playersData: Player[] = [
     shooting: 60,
     dribbling: 70,
     bgColor: "bg-emerald-600",
+    stars:5
   },
   {
     name: "Ruben Dias",
@@ -90,6 +94,7 @@ export const playersData: Player[] = [
     shooting: 50,
     dribbling: 65,
     bgColor: "bg-sky-600",
+    stars:3
   },
   {
     name: "Kevin De Bruyne",
@@ -106,6 +111,7 @@ export const playersData: Player[] = [
     shooting: 90,
     dribbling: 80,
     bgColor: "bg-cyan-600",
+    stars:5
   },
   {
     name: "Jude Bellingham",
@@ -122,6 +128,7 @@ export const playersData: Player[] = [
     shooting: 82,
     dribbling: 75,
     bgColor: "bg-purple-700",
+    stars:4
   },
   {
     name: "Lionel Messi",
@@ -138,6 +145,7 @@ export const playersData: Player[] = [
     shooting: 80,
     dribbling: 99,
     bgColor: "bg-pink-600",
+    stars:5
   },
   {
     name: "Kylian Mbappe",
@@ -154,6 +162,7 @@ export const playersData: Player[] = [
     shooting: 85,
     dribbling: 90,
     bgColor: "bg-rose-600",
+    stars:5
   },
   {
     name: "Erling Haaland",
@@ -170,6 +179,7 @@ export const playersData: Player[] = [
     shooting: 89,
     dribbling: 70,
     bgColor: "bg-amber-600",
+    stars:5
   },
   {
     name: "Mohamed Salah",
@@ -186,5 +196,6 @@ export const playersData: Player[] = [
     shooting: 83,
     dribbling: 82,
     bgColor: "bg-red-600",
+    stars:5
   },
 ];
