@@ -10,7 +10,7 @@ const Select = ({
 	label?: string;
 	value: string;
 	onChange: any;
-	data: any[];
+	data: any;
 }) => {
 	return (
 		<div className="flex flex-col w-full">
