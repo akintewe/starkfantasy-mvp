@@ -26,7 +26,7 @@ const Select = ({
 					onChange={onChange}
 					aria-label="Filter by position"
 				>
-					{data?.map((item) => (
+					{data?.map((item: any) => (
 						<option key={item} value={item}>
 							{item}
 						</option>

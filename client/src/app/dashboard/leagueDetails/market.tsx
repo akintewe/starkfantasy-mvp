@@ -3,21 +3,11 @@ import { motion, AnimatePresence } from "framer-motion";
 import Select from "@/components/select";
 import star from "../../../../public/icons/star.svg";
 import starPoint from "../../../../public/icons/starPoint.svg";
+import search from "../../../../public/icons/search.svg";
 import plus from "../../../../public/icons/plus.svg";
 import { playersData, Player } from "@/data/mockMarketData";
 import Modal from "@/components/modal";
-import { Radar } from "react-chartjs-2";
-import {
-  Chart as ChartJS,
-  RadialLinearScale,
-  PointElement,
-  LineElement,
-  Filler,
-  Tooltip,
-  Legend,
-} from "chart.js";
-
-ChartJS.register(RadialLinearScale, PointElement, LineElement, Filler, Tooltip, Legend);
+import RadarChart from "@/components/RadarChart";
 
 const calculatePoints = (player: Player) => {
   const pointsForGoals = player.goals * 10;
@@ -194,14 +184,14 @@ const Market = () => {
         <div className="relative w-full md:w-[420px]">
           <input
             type="text"
-            className="bg-gray-900 text-white text-[14px] font-medium py-3 px-4 rounded-[20px] border-[0.5px] border-[#1E2939] focus:outline-none focus:ring-0 focus:transparent w-full"
+            className="bg-gray-900 text-white text-[14px] font-medium py-3 px-4 pl-[45px] rounded-[20px] border-[0.5px] border-[#1E2939] focus:outline-none focus:ring-0 focus:transparent w-full"
             placeholder="Search"
             value={searchQuery}
             onChange={handleSearchChange}
             aria-label="Search players"
           />
-          <span className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400">
-            🔍
+          <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400">
+            <img src={search} alt="" />
           </span>
         </div>
       </section>
@@ -382,70 +372,7 @@ const Market = () => {
                   <p className="text-sm sm:text-[20px] font-bold uppercase text-indigo-800 mb-2">
                     Performance
                   </p>
-                  <div className="h-[200px] sm:h-[190px] flex justify-center items-center">
-                    {(() => {
-                      const stats = [
-                        selectedPlayer.goals * 2,
-                        selectedPlayer.assists * 2,
-                        selectedPlayer.shooting ?? 8,
-                        selectedPlayer.dribbling ?? 7,
-                        selectedPlayer.speed ?? 9,
-                      ];
-                      const maxStat = Math.max(...stats);
-                      const dynamicMax = Math.ceil(maxStat * 1.1);
-                      return (
-                        <Radar
-                          data={{
-                            labels: ["Goals", "Assists", "Shooting", "Dribbling", "Speed"],
-                            datasets: [
-                              {
-                                label: "Performance",
-                                data: stats,
-                                backgroundColor: "#FF69004D",
-                                borderColor: "#F54900",
-                                borderWidth: 2,
-                                pointRadius: 0,
-                              },
-                            ],
-                          }}
-                          options={{
-                            maintainAspectRatio: false,
-                            scales: {
-                              r: {
-                                angleLines: {
-                                  color: "rgba(255, 255, 255, 0.2)",
-                                },
-                                grid: {
-                                  color: "rgba(255, 255, 255, 0.2)",
-                                },
-                                pointLabels: {
-                                  font: {
-                                    size: 14,
-                                    family: "'Arial', sans-serif",
-                                    weight: "bold",
-                                  },
-                                  color: "#F97316",
-                                },
-                                ticks: {
-                                  display: false,
-                                },
-                                min: 0,
-                                max: dynamicMax,
-                              },
-                            },
-                            plugins: {
-                              legend: {
-                                display: false,
-                              },
-                              tooltip: {
-                                enabled: true,
-                              },
-                            },
-                          }}
-                        />
-                      );
-                    })()}
-                  </div>
+                  <RadarChart selectedPlayer={selectedPlayer}/>
                 </div>
               </div>
               <motion.button
