@@ -157,6 +157,18 @@ const Market = () => {
     },
   };
 
+
+  const nameVariants = {
+    rest: {
+      color: "#FFFFFF",
+      transition: { duration: 0.3, ease: "easeOut" },
+    },
+    hover: {
+      color: "#F97316",
+      transition: { duration: 0.3, ease: "easeOut" },
+    },
+  };
+
   return (
     <main className="min-h-screen text-white">
       <h2 className="text-5xl font-bold mb-6">Market</h2>
@@ -235,10 +247,17 @@ const Market = () => {
                     </motion.span>
                     <div className="flex items-end justify-between">
                       <div>
-                        <h3 className="text-lg font-semibold">{player.name}</h3>
+                        <motion.h3
+                          className="text-lg font-semibold  group-hover:[-webkit-text-stroke:0.5px_#F54900]"
+                          variants={nameVariants}
+                          initial="rest"
+                          whileHover="hover"
+                        >
+                          {player.name}
+                        </motion.h3>
                         <p className="text-sm text-gray-300">{player.team}</p>
                         <div className="flex items-center gap-1 my-2">
-                          {[...Array(player.stars)].map((_, i) => (
+                          {[...Array(5)].map((_, i) => (
                             <motion.span
                               key={i}
                               className={
@@ -332,7 +351,7 @@ const Market = () => {
                   <h3 className="text-[28px] sm:text-[34px] md:text-[40px] font-semibold">{selectedPlayer.name}</h3>
                   <p className="text-[16px] sm:text-[18px] md:text-[20px] text-gray-300">{selectedPlayer.team}</p>
                   <div className="flex items-center gap-1 my-2">
-                    {[...Array(selectedPlayer.stars)].map((_, i) => (
+                    {[...Array(5)].map((_, i) => (
                       <motion.span
                         key={i}
                         className={
@@ -372,7 +391,7 @@ const Market = () => {
                   <p className="text-sm sm:text-[20px] font-bold uppercase text-indigo-800 mb-2">
                     Performance
                   </p>
-                  <RadarChart selectedPlayer={selectedPlayer}/>
+                  <RadarChart selectedPlayer={selectedPlayer} />
                 </div>
               </div>
               <motion.button
