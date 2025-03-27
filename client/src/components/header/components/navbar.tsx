@@ -21,7 +21,7 @@ export default function NavBar() {
   return (
       <nav
         aria-label="Main navigation"
-        className="lg:bg-slate-900 rounded-full px-12 h-[70px] flex items-center justify-center space-x-12 lg:shadow-lg"
+        className="lg:bg-neutral-900 rounded-full px-12 h-[70px] flex items-center justify-center space-x-12 lg:shadow-lg"
       >
         {
           pages.map((item) => (
