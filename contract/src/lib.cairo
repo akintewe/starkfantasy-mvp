@@ -12,6 +12,7 @@ pub mod models {
     pub mod team_player;
     pub mod user;
     pub mod vec2;
+    pub mod player_performance
 }
 
 pub mod types {
