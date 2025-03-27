@@ -1,4 +1,5 @@
-#[derive(Model, Copy, Drop, Serde)]
+#[derive(Copy, Drop, Serde)]
+#[dojo::model]
 struct TeamPlayer {
     #[key]
     team_id: u64,
@@ -6,7 +7,7 @@ struct TeamPlayer {
     player_id: u64,
     is_starter: bool,
     is_captain: bool,
-    position_in_team: u8
+    position_in_team: u8,
 }
 
 #[cfg(test)]
@@ -21,7 +22,7 @@ mod tests {
             player_id: 100_u64,
             is_starter: false,
             is_captain: false,
-            position_in_team: 5_u8
+            position_in_team: 5_u8,
         };
 
         assert(regular_player.team_id == 1_u64, 'Wrong team_id');
@@ -36,7 +37,7 @@ mod tests {
             player_id: 201_u64,
             is_starter: true,
             is_captain: true,
-            position_in_team: 1_u8
+            position_in_team: 1_u8,
         };
 
         assert(captain_player.team_id == 2_u64, 'Wrong team_id');
@@ -53,7 +54,7 @@ mod tests {
             player_id: 100_u64,
             is_starter: true,
             is_captain: false,
-            position_in_team: 1_u8
+            position_in_team: 1_u8,
         };
 
         let player2 = TeamPlayer {
@@ -61,7 +62,7 @@ mod tests {
             player_id: 100_u64,
             is_starter: true,
             is_captain: false,
-            position_in_team: 1_u8
+            position_in_team: 1_u8,
         };
 
         let player3 = TeamPlayer {
@@ -69,7 +70,7 @@ mod tests {
             player_id: 101_u64,
             is_starter: true,
             is_captain: false,
-            position_in_team: 1_u8
+            position_in_team: 1_u8,
         };
 
         assert(player1.team_id == player2.team_id, 'Team IDs should match');
@@ -77,4 +78,4 @@ mod tests {
         assert(player1.team_id == player3.team_id, 'Team IDs should match');
         assert(player1.player_id != player3.player_id, 'Player IDs should differ');
     }
-} 
+}
