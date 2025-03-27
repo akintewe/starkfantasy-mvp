@@ -15,11 +15,11 @@ const PremierLeague = () => {
     <div className="relative w-full h-screen text-white flex flex-col">
       <Sidebar
         currentImage="assets/images/premier-logo.jpeg"
-        className="fixed left-0 top-0 h-full w-64 bg-[#1F1B2C] z-[1000]"
+        className="fixed left-0 top-[100px] h-full w-64 bg-[#1F1B2C] z-[1000]"
       />
 
       <div className="ml-8 flex flex-col flex-grow">
-        <Header className="relative z-30" />
+        <Header className="z-30" bgNoTransparent />
 
         <img
           src="assets/images/premier-league.png"
