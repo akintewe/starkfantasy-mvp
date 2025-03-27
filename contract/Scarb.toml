@@ -8,6 +8,7 @@ edition = "2024_07"
 sierra-replace-ids = true
 
 [scripts]
+test = "sozo test"
 migrate = "sozo build && sozo migrate"                      # scarb run migrate
 spawn = "sozo execute starkfantasy-actions spawn --wait"    # scarb run spawn
 move = "sozo execute starkfantasy-actions move -c 1 --wait" # scarb run move
@@ -19,5 +20,6 @@ dojo = { git = "https://github.com/dojoengine/dojo", tag = "v1.2.2" }
 build-external-contracts = ["dojo::world::world_contract::world"]
 
 [dev-dependencies]
+assert_macros = "=2.9.2"
 cairo_test = "=2.9.2"
 dojo_cairo_test = { git = "https://github.com/dojoengine/dojo", tag = "v1.2.2" }
