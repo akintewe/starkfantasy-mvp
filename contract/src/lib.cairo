@@ -20,4 +20,6 @@ pub mod types {
     pub mod player_status;
 }
 
+pub mod constants;
+
 pub mod tests {}
