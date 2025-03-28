@@ -1,27 +1,14 @@
+use starkfantasy::types::player_position::PlayerPosition;
+use starkfantasy::types::player_status::PlayerStatus;
 
-#[derive(Copy, Drop, Serde, PartialEq, Debug)]
-pub enum PlayerPosition{
-    GK = 1,
-    DEF = 2,
-    MID = 3,
-    FWD = 4,
-}
 
-#[derive(Copy, Drop, Serde, PartialEq, Debug)]
-pub enum PlayerStatus{
-    Available = 1,
-    Injured = 2,
-    Suspended = 3,
-}
-
-#[derive(Copy, Drop, Serde, Debug)]
+#[derive(Copy, Drop, Serde, Debug, PartialEq)]
 #[dojo::model]
 struct Player{
-    [key]
-    id: u64,
+    #[key] id: u64,
     external_id: felt252,
     name: felt252,
-    position: Position, 
+    position: PlayerPosition, 
     real_team: felt252,
     image_url: felt252,
     country: felt252,
@@ -41,7 +28,7 @@ mod tests {
             id: 1_u64,
             external_id: 123456_felt252,
             name: 'Lionel Messi',
-            position: PlayerPosition::FWD,
+            position: PlayerPosition::Forward,
             real_team: 'Paris Saint-Germain',
             image_url: 'https://example.com/messi.jpg',
             country: 'Argentina',
@@ -57,7 +44,7 @@ mod tests {
             id: 1_u64,
             external_id: 123456_felt252,
             name: 'Lionel Messi',
-            position: PlayerPosition::FWD,
+            position: PlayerPosition::Forward,
             real_team: 'Paris Saint-Germain',
             image_url: 'https://example.com/messi.jpg',
             country: 'Argentina',
@@ -69,7 +56,7 @@ mod tests {
         assert(player.id == 1_u64, 'Wrong player ID');
         assert(player.external_id == 123456_felt252, 'Wrong external ID');
         assert(player.name == 'Lionel Messi', 'Wrong player name');
-        assert(player.position == PlayerPosition::FWD, 'Wrong player position');
+        assert(player.position == PlayerPosition::Forward, 'Wrong player position');
         assert(player.real_team == 'Paris Saint-Germain', 'Wrong real team');
         assert(player.image_url == 'https://example.com/messi.jpg', 'Wrong image URL');
         assert(player.country == 'Argentina', 'Wrong country');
@@ -97,7 +84,7 @@ mod tests {
             id: 2_u64,
             external_id: 654321_felt252,
             name: 'Cristiano Ronaldo',
-            position: PlayerPosition::FWD,
+            position: PlayerPosition::Forward,
             real_team: 'Al Nassr',
             image_url: 'https://example.com/ronaldo.jpg',
             country: 'Portugal',
@@ -125,7 +112,7 @@ mod tests {
         let player = generate_player();
 
         // Check if the position is set correctly
-        assert(player.position == PlayerPosition::FWD, 'Player should be a forward');
+        assert(player.position == PlayerPosition::Forward, 'Player should be a forward');
     }
 
     #[test]
@@ -141,7 +128,7 @@ mod tests {
         let player = generate_player();
 
         // Check if the total points are set correctly
-        assert(player.total_points == 200_u32, 'Player total points should be 200');
+        assert(player.total_points == 200_u32, 'Player points should be 200');
     }
 
     #[test]
@@ -149,7 +136,7 @@ mod tests {
         let player = generate_player();
 
         // Check if the country is set correctly
-        assert(player.country == 'Argentina', 'Player country should be Argentina');
+        assert(player.country == 'Argentina', 'Country must be Argentina');
     }
 
     #[test]
@@ -157,7 +144,7 @@ mod tests {
         let player = generate_player();
 
         // Check if the real team is set correctly
-        assert(player.real_team == 'Paris Saint-Germain', 'Player real team should be Paris Saint-Germain');
+        assert(player.real_team == 'Paris Saint-Germain', 'Expected: Paris Saint-Germain');
     }
 
     #[test]
@@ -165,7 +152,7 @@ mod tests {
         let player = generate_player();
 
         // Check if the image URL is set correctly
-        assert(player.image_url == 'https://example.com/messi.jpg', 'Player image URL should be https://example.com/messi.jpg');
+        assert(player.image_url == 'https://example.com/messi.jpg', 'Link does not match');
     }
 
     #[test]
@@ -173,7 +160,7 @@ mod tests {
         let player = generate_player();
 
         // Check if the external ID is set correctly
-        assert(player.external_id == 123456_felt252, 'Player external ID should be 123456');
+        assert(player.external_id == 123456_felt252, 'External ID should be 123456');
     }
 
     #[test]
@@ -181,7 +168,7 @@ mod tests {
         let player = generate_player();
 
         // Check if the name is set correctly
-        assert(player.name == 'Lionel Messi', 'Player name should be Lionel Messi');
+        assert(player.name == 'Lionel Messi', 'Name should be Lionel Messi');
     }
 
     #[test]
