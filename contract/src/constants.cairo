@@ -1,3 +1,20 @@
+// Starknet import
+use starknet::{ContractAddress, contract_address_const};
+
+// Zero address
+pub fn ZERO_ADDRESS() -> ContractAddress {
+    contract_address_const::<0x0>()
+}
+
+// Seconds per day
+pub const SECONDS_PER_DAY: u64 = 86400;
+
+// Tournament status
+pub const TOURNAMENT_STATUS_UPCOMING: u8 = 1;
+pub const TOURNAMENT_STATUS_ACTIVE: u8 = 2;
+pub const TOURNAMENT_STATUS_FINISHED: u8 = 3;
+pub const TOURNAMENT_STATUS_CANCELLED: u8 = 4;
+
 // Starkfantasy System Configuration Constants
 // This file centralizes all fixed values and configuration parameters 
 // used throughout the fantasy football platform.
