@@ -15,10 +15,6 @@ pub const TOURNAMENT_STATUS_ACTIVE: u8 = 2;
 pub const TOURNAMENT_STATUS_FINISHED: u8 = 3;
 pub const TOURNAMENT_STATUS_CANCELLED: u8 = 4;
 
-// Reward per place %
-pub const FIRST_PLACE_REWARD: u256 = 50;
-pub const SECOND_PLACE_REWARD: u256 = 30;
-pub const THIRD_PLACE_REWARD: u256 = 20;
 // Starkfantasy System Configuration Constants
 // This file centralizes all fixed values and configuration parameters 
 // used throughout the fantasy football platform.

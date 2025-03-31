@@ -40,8 +40,6 @@ pub impl TournamentImpl of TournamentTrait {
         assert(max_teams_per_user > 0, 'Max teams must be positive');
         assert(max_players_per_team > 0, 'Max players must be positive');
         
-        // ID generation (in a real system, this could come from an ID generator)
-        let id = 1;
         
         Tournament {
             id,
@@ -150,20 +148,6 @@ pub impl TournamentImpl of TournamentTrait {
     // Check if the tournament is active
     fn is_active(self: @Tournament) -> bool {
         *self.status == constants::TOURNAMENT_STATUS_ACTIVE
-    }
-    
-    // Calculate prize for a specific position
-    fn calculate_prize_for_position(self: @Tournament, position: u32) -> u256 {
-        // Implement prize distribution logic in the future
-        // Example: 1st place: 50%, 2nd place: 30%, 3rd place: 20%
-        if position == 1 {
-            return (*self.total_prize_pool * constants::FIRST_PLACE_REWARD) / 100;
-        } else if position == 2 {
-            return (*self.total_prize_pool * constants::SECOND_PLACE_REWARD) / 100;
-        } else if position == 3 {
-            return (*self.total_prize_pool * constants::THIRD_PLACE_REWARD) / 100;
-        }
-        0_u256
     }
 }
 
@@ -386,36 +370,6 @@ mod tests {
         
         // Verify days until end
         assert(TournamentImpl::days_until_end(@tournament) == 10_u32, 'Should be 10 days until end');
-    }
-    
-    #[test]
-    #[available_gas(1000000)]
-    fn test_calculate_prize() {
-        let mut tournament = create_test_tournament();
-        
-        // Register 10 participants
-        let mut i = 0_u32;
-        while i < 10_u32 {
-            TournamentImpl::register_participant(ref tournament);
-            i += 1;
-        };
-        
-        // The prize pool should be 1000
-        assert(tournament.total_prize_pool == 1000_u256, 'Pool should be 1000');
-        
-        // Verify prize calculation
-        let first_prize = TournamentImpl::calculate_prize_for_position(@tournament, 1);
-        assert(first_prize == 500_u256, 'First prize should be 500'); // 50% of 1000
-        
-        let second_prize = TournamentImpl::calculate_prize_for_position(@tournament, 2);
-        assert(second_prize == 300_u256, 'Second prize should be 300'); // 30% of 1000
-        
-        let third_prize = TournamentImpl::calculate_prize_for_position(@tournament, 3);
-        assert(third_prize == 200_u256, 'Third prize should be 200'); // 20% of 1000
-        
-        // Position that does not receive a prize
-        let no_prize = TournamentImpl::calculate_prize_for_position(@tournament, 4);
-        assert(no_prize == 0_u256, 'No prize for position 4');
     }
     
     #[test]
