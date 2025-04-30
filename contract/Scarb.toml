@@ -20,6 +20,6 @@ dojo = { git = "https://github.com/dojoengine/dojo", tag = "v1.2.2" }
 build-external-contracts = ["dojo::world::world_contract::world"]
 
 [dev-dependencies]
-assert_macros = "=2.9.2"
-cairo_test = "=2.9.2"
+assert_macros = "2.9.2"
+cairo_test = "2.9.2"
 dojo_cairo_test = { git = "https://github.com/dojoengine/dojo", tag = "v1.2.2" }
